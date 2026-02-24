@@ -1,37 +1,48 @@
-Kanban Task Board - Technical Overview
-🚀 ארכיטקטורה ומושגים מרכזיים
-1. Separation of Concerns (SoC) & Service Layer
-ניהול התקשורת מול ה-Backend מבוצע ב-Service Module נקי (Vanilla JS) ולא כקומפוננטת React.
+# 📋 Kanban Task Board - Technical Overview
 
-Performance: המודול אינו גורם ל-Re-render מיותר של ה-Virtual DOM, מה שמבטיח עבודה יעילה ומהירה.
+לוח משימות אינטראקטיבי המממש מתודולוגיית **Agile** וניהול זרימת עבודה חכם.
 
-Decoupling: הפרדה מוחלטת בין הלוגיקה העסקית לשכבת התצוגה.
+---
 
-2. Native Drag & Drop Implementation
-מימוש מלא באמצעות HTML5 Drag & Drop API ללא ספריות חיצוניות.
+### 🚀 ארכיטקטורה ועקרונות פיתוח
 
-State Persistence: סנכרון מיידי של מיקומי המשימות ב-DB באמצעות בקשות PATCH.
+* **Modular Service Architecture (Non-Component Logic)**
+    ניהול התקשורת מול ה-Backend מבוצע בתוך **Service Module** נקי (Vanilla JS) ולא כקומפוננטת React.
+    * **Performance**: המודול אינו משתתף במחזור ה-**Re-render** של ה-Virtual DOM, מה שמבטיח עבודה יעילה ומהירה.
+    * **Decoupling**: הפרדה מוחלטת בין הלוגיקה העסקית לשכבת התצוגה (UI).
 
-UX Feedback: אינדיקציות ויזואליות בזמן גרירה לשדרוג חוויית המשתמש.
+---
 
-3. WIP Limits & Validations
-אכיפת מתודולוגיית Agile באמצעות מגבלות עומס:
+### 🛠️ מימושים טכניים מרכזיים
 
-Server-side Validation: השרת חוסם חריגות מה-WIP Limit ומחזיר Error Response תואם.
+* **Native Drag & Drop Implementation**
+    מימוש מלא באמצעות **HTML5 Drag & Drop API** ללא הסתמכות על ספריות חיצוניות.
+    * **State Persistence**: סנכרון מיידי של מיקומי המשימות ב-DB באמצעות בקשות **PATCH** לשמירה על שלמות הנתונים.
+    * **UX Feedback**: אינדיקציות ויזואליות בזמן גרירה (Drop zone highlighting) לשדרוג חוויית המשתמש.
 
-Client Feedback: חיווי ויזואלי דינמי על קיבולת העמודות בלוח.
+* **WIP Limits & Business Logic**
+    אכיפת מגבלות עומס עבודה למניעת צווארי בקבוק (Bottlenecks):
+    * **Server-side Validation**: השרת חוסם חריגות מה-**WIP Limit** ומחזיר Error Response תואם.
+    * **Client Feedback**: חיווי ויזואלי דינמי על קיבולת העמודות בלוח (Progress indicator).
 
-4. Client-side Filtering
-In-memory Filtering: סינון לפי Assignee או Priority מתבצע ישירות על ה-State לביצועים אופטימליים ללא Network Overhead.
+* **Client-side Filtering**
+    * **In-memory Filtering**: סינון לפי *Assignee* או *Priority* מתבצע ישירות על ה-State לביצועים אופטימליים ללא **Network Overhead**.
 
-🛠️ Roadmap & Future Enhancements
-Containerization: הוספת תמיכה ב-Docker ליצירת סביבת פיתוח והפצה אחידה.
+---
 
-Production Database: מעבר מ-SQLite למסד נתונים חזק יותר (כמו PostgreSQL) לתמיכה בעומסים גבוהים.
+### 📈 Roadmap & Future Enhancements
 
-Unit Testing: הוספת בדיקות לוגיקה לשכבת ה-Service ול-Backend.
+* **Containerization**: הוספת תמיכה ב-**Docker** ליצירת סביבת פיתוח והפצה אחידה.
+* **Production Database**: מעבר מ-SQLite למסד נתונים חזק יותר (כמו **PostgreSQL**) לתמיכה בעומסים גבוהים.
+* **Unit Testing**: הוספת בדיקות לוגיקה לשכבת ה-Service ול-Backend.
 
-⚙️ Installation
-Bash
+---
+
+### ⚙️ הוראות הרצה (Installation)
+
+```bash
+# Install dependencies
 npm install && cd client && npm install
+
+# Start the application
 npm start
